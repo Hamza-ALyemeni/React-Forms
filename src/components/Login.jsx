@@ -1,44 +1,15 @@
-import { useState } from "react";
+import { useRef } from "react";
 
 export default function Login() {
-  const [inputChange, setInputChange]= useState({
-    email:'',
-    password:''
-  });
-
-  const [didEdit, setDidEdit] = useState({
-    email:false,
-    password:false
-  })
-
-  const emailIsInvalid = didEdit.email && !inputChange.email.includes('@');
+ const email  = useRef();
+ const password = useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    console.log(inputChange);
+    console.log();
   }
 
-  function handleInputChange(identifers,value) {
-    setInputChange((prevInput) => ({
-      ...prevInput,
-      [identifers]: value
-    })
-    )
-    setDidEdit((prevInput) => ({
-      ...prevInput,
-      [identifers]: false
-    })
-    )
-  }
-
-  function handleBlur(identifers) {
-    setDidEdit((prevInput) => ({
-      ...prevInput,
-      [identifers]: true
-    })
-    )
-  }
   
 
   return (
@@ -52,9 +23,8 @@ export default function Login() {
           id="email" 
           type="email"
           name="email" 
-          onBlur={() => handleBlur('email')}
-          onChange={(event) => handleInputChange('email',event.target.value)} 
-          value={inputChange.email}/>
+          ref={email}
+          />
           <div className="control-error">{emailIsInvalid && <p>please provide a vlide email address</p>}</div>
         </div>
 
@@ -64,7 +34,6 @@ export default function Login() {
           id="password"
           type="password" 
           name="password"
-          onChange={(event) => handleInputChange('password',event.target.value)}
           value={inputChange.password} />
         </div>
       </div>
