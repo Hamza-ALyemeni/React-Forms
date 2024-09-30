@@ -27,11 +27,7 @@ export default function Signup() {
 
         <div className="control">
           <label htmlFor="confirm-password">Confirm Password</label>
-          <input
-            id="confirm-password"
-            type="password"
-            name="confirm-password"
-          />
+          <input id="confirm-password" type="password" name="confirm-password" />
         </div>
       </div>
 
